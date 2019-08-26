@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Color Change</title>
+</head>
+<body>
+    <script type= "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+
+    <script>
+        let radius = 100;
+        let x,y;
+        let r,g,b;
+        let score = 0;
+        function setup(){
+            createCanvas(windowWidth, windowHeight);
+            x = random(windowWidth);
+            y = random(windowHeight);
+            r = random(255);
+            g = random(255);
+            b = random(255);
+        }
+        function draw(){
+            background(220);
+            fill(r,g,b);
+            noStroke();
+            ellipse(x,y,radius*2,radius*2);
+            fill(0,102,255);
+            text("Score : " +score, 10,30);
+            textSize(25);
+            
+        }
+        function newCircle(){
+            x = random(windowWidth);
+            y = random(windowHeight);
+            r = random(255);
+            g = random(255);
+            b = random(255);
+        }
+        function mousePressed(){
+            let d = dist(mouseX,mouseY,x,y);
+            if(d<radius){
+                newCircle();
+                score++;
+                if(score == 10){
+                    radius /= 2;
+                }
+                if(score == 20){
+                    setInterval(newCircle,700);
+                }
+            }
+        }
+        setInterval(newCircle,1000);
+
+        
+    </script>
+</body>
+</html>
